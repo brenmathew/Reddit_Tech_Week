@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Piano Tiles</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="game-header">
+            {% if logo_exists %}
+            <img src="{{ url_for('static', filename='reddit-logo.png') }}" alt="Reddit Logo" class="reddit-logo">
+            {% else %}
+            <div class="reddit-logo-placeholder">🎮</div>
+            {% endif %}
+            <h1>Reddit Piano Tiles</h1>
+            <div class="score-container">
+                <span>Karma: </span>
+                <span id="score">0</span>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <canvas id="gameCanvas"></canvas>
+            <div id="gameOver" class="game-over hidden">
+                <h2>Game Over!</h2>
+                <p>Final Karma: <span id="finalScore">0</span></p>
+                <button id="restartButton">Play Again</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="startButton">Start Game</button>
+            <button id="shareButton" class="hidden">Share on Reddit</button>
+        </div>
+
+        <div class="instructions">
+            Use arrow keys to pop the tiles:<br>
+            ← Left | ↑ Up | ↓ Down | → Right<br>
+            Try to hit the highlighted tiles for bonus karma!
+        </div>
+    </div>
+
+    <!-- Debug info -->
+    <div id="debug" style="position: fixed; bottom: 10px; left: 10px; color: white; font-family: monospace;"></div>
+
+    <script>
+        // Add debug function
+        function debug(msg) {
+            const debugEl = document.getElementById('debug');
+            debugEl.textContent = msg;
+        }
+
+        // Check if game.js is loaded
+        window.addEventListener('load', () => {
+            debug('Window loaded');
+            if (typeof PianoTiles === 'undefined') {
+                debug('Error: PianoTiles class not found! game.js might not be loading correctly.');
+            } else {
+                debug('PianoTiles class found, initializing game...');
+            }
+        });
+    </script>
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html> 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reddit Piano Tiles</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="game-header">
+            <div class="reddit-logo-placeholder">🎮</div>
+            <h1>Reddit Piano Tiles</h1>
+            <div class="score-container">
+                <span>Karma: </span>
+                <span id="score">0</span>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <canvas id="gameCanvas"></canvas>
+            <div id="gameOver" class="game-over hidden">
+                <h2>Game Over!</h2>
+                <p>Final Karma: <span id="finalScore">0</span></p>
+                <button id="restartButton">Play Again</button>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="startButton">Start Game</button>
+            <button id="shareButton" class="hidden">Share on Reddit</button>
+        </div>
+
+        <div class="instructions">
+            Use arrow keys to pop the tiles:<br>
+            ← Left | ↑ Up | ↓ Down | → Right<br>
+            Try to hit the highlighted tiles for bonus karma!
+        </div>
+    </div>
+
+    <!-- Debug info -->
+    <div id="debug" style="position: fixed; bottom: 10px; left: 10px; color: white; font-family: monospace;"></div>
+
+    <script>
+        function debug(msg) {
+            const debugEl = document.getElementById('debug');
+            debugEl.textContent = msg;
+        }
+    </script>
+    <script src="static/game.js"></script>
+</body>
+</html> 
